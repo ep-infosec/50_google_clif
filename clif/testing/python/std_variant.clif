@@ -1,0 +1,31 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from "clif/testing/std_variant.h" import *
+
+from "clif/testing/std_variant.h":
+    def `VariantIndex` as index_int_str_list(v: OneOf<int, str, list<int>>) -> int
+    def `VariantIndex` as index_int_float(v: OneOf<int, float>) -> int
+    def `VariantIndex` as index_float_int(v: OneOf<float, int>) -> int
+    def `VariantIndex` as index_monostate_int_str(v: OneOf<Monostate, int, str>) -> int
+
+    def `Identity` as identity_int_str_list(v: OneOf<int, str, list<int>>) -> OneOf<int, str, list<int>>
+    def `Identity` as identity_int_float(v: OneOf<int, float>) -> OneOf<int, float>
+    def `Identity` as identity_float_int(v: OneOf<float, int>) -> OneOf<float, int>
+    def `Identity` as identity_opt_int_float(v: NoneOr<OneOf<int, float>>) -> NoneOr<OneOf<int, float>>
+    def `Identity` as identity_monostate_int_str(v: OneOf<Monostate, int, str>) -> OneOf<Monostate, int, str>
+
+    def `GetDirect` as get_direct(v: OneOf<WithDirectConv>) -> int
+    def `GetOptional` as get_optional(v: OneOf<WithOptionalConv>) -> int
+    def `GetUniquePtr` as get_unique_ptr(v: OneOf<WithUniquePtrConv>) -> int

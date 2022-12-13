@@ -1,0 +1,45 @@
+# Copyright 2017 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+use `std::string` as str
+
+from "clif/testing/std_containers.h":
+  def Mul(v: list<int>, m: int) -> list<int>
+  def Div(v: `std::array<int, 2>` as list, m: int) -> `std::array<int, 2>` as list
+  def Transpose(m: `std_array_2` as list<`std::array<int, 3>` as list>) -> `std_array_3` as list<`std::array<int, 2>` as list>
+  def Odd(v: list<int>) -> list<bool>
+  def Even(v: list<int>) -> list<bool>
+  def Find(v: int, m: dict<int,int>) -> (x: bool, y: int)
+  def Ones(rows: int, columns: int) -> list<list<int>>
+  def Capitals() -> list<tuple<str, str>>
+  def MatrixSum(a: list<list<int>>, b: list<list<int>>) -> list<list<int>>
+  def Make2By3() -> `std::tuple` as tuple<`std::tuple` as tuple<int, int, int>, `std::tuple` as tuple<int, int, int>>
+  def Flatten2By3(m: `std::tuple` as tuple<`std::tuple` as tuple<int, int, int>, `std::tuple` as tuple<int, int, int>>) -> `std::tuple` as tuple<int, int, int, int, int, int>
+  def LastStringInVector(v: list<str>) -> (output: str)
+
+  def unique_ptr_vector_round_trip(v: list<int> = default) -> list<int>
+  def unique_ptr_unordered_map_round_trip(m: dict<int, int> = default) -> dict<int, int>
+  def unique_ptr_unordered_set_round_trip(m: set<int> = default) -> set<int>
+  # TODO: Implement type casters for smart pointers with tuples.
+  # def unique_ptr_pair_round_trip(t: tuple<int, int> = default) -> tuple<int, int>
+
+  # Not supported by legacy PyCLIF
+  # def comsume_shared_ptr_vector(v: list<int>) -> int
+  # def return_shared_ptr_vector() -> list<int>
+  # def consume_shared_ptr_unordered_map(m: dict<int, int>) -> int
+  # def return_shared_ptr_unordered_map() -> dict<int, int>
+  # def consume_shared_ptr_unordered_set(s: set<int>) -> int
+  # def return_shared_ptr_unordered_set() -> set<int>
+  # def consume_shared_ptr_pair(p: tuple<int, int>) -> int
+  # def return_shared_ptr_pair() -> tuple<int, int>

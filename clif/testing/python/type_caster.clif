@@ -1,0 +1,59 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from "clif/testing/value_holder_clif_conversions.h" import *
+
+from "clif/testing/python/type_caster_clif_aux.h":
+  namespace `clif_testing`:
+    def get_value_direct(vh: ValueHolder) -> int
+    def get_value_optional(vh: NoneOr<ValueHolder>) -> int
+    def get_value_variant(vh: OneOf<ValueHolder>) -> int
+    def return_value(v: int) -> ValueHolder
+    def consume_unique_ptr(vh: ValueHolder) -> int
+
+    # Test calling type casters recursively
+    def return_value_list(values: list<int>) -> list<ValueHolder>
+
+    def return_value_pyobjfrom_only(v: int) -> ValueHolderFromOnly
+
+    def get_value_pyobjas_only(vh: ValueHolderAsOnly) -> int
+    def get_value_pybind11_ignore(vh: ValueHolderPybind11Ignore) -> int
+    def get_value_template_one_param(vh: ValueHolderTemplate<int>) -> int
+    def get_value_template_two_params(vh: ValueHolderTemplate<int, int>) -> int
+
+    @do_not_release_gil
+    def get_refcount_from_raw_ptr() -> int
+    @do_not_release_gil
+    def get_refcount_from_unique_ptr() -> int
+    @do_not_release_gil
+    def get_refcount_from_rvalue() -> int
+    @do_not_release_gil
+    def get_refcount_from_const_ref() -> int
+    @do_not_release_gil
+    def get_refcount_from_const_ptr() -> int
+    @do_not_release_gil
+    def get_refcount_from_enum() -> int
+
+    def can_convert_enum_to_concrete(obj: object) -> bool
+    def can_convert_to_concrete(obj: object) -> bool
+    def can_convert_to_ptr(obj: object) -> bool
+    def can_convert_to_shared_ptr(obj: object) -> bool
+    def can_convert_to_unique_ptr(obj: object) -> bool
+
+    def pyobject_round_trip(vec: list<object>) -> list<object>
+
+    def abstract_raw_ptr_round_trip(vh: ValueHolderAbstract) -> ValueHolderAbstract
+    def abstract_shared_ptr_round_trip(vh: ValueHolderAbstract) -> ValueHolderAbstract
+    def abstract_unique_ptr_round_trip(vh: ValueHolderAbstract) -> ValueHolderAbstract
+    def consume_nocopy_nomove(vh: ValueHolderNoCopyNoMove) -> int
